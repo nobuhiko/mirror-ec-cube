@@ -751,12 +751,23 @@ function lfInitDBParam($objDBParam)
         $db_user = 'eccube_db_user';
     }
 
+    $postgres = getenv("DATABASE_URL");
+    if ($postgres) {
+        $url = parse_url($postgres);
+        $db_type = 'pgsql';
+        $db_server = $url["host"];
+        $db_port = $url["port"];
+        $db_user = $url["user"];
+        $db_pass = $url["pass"];
+        $db_name = substr($url["path"], 1);
+    }
+
     $objDBParam->addParam('DBの種類', 'db_type', INT_LEN, '', array('EXIST_CHECK', 'MAX_LENGTH_CHECK'), $db_type);
     $objDBParam->addParam('DBサーバー', 'db_server', MTEXT_LEN, '', array('MAX_LENGTH_CHECK'), $db_server);
     $objDBParam->addParam('DBポート', 'db_port', INT_LEN, '', array('MAX_LENGTH_CHECK'), $db_port);
     $objDBParam->addParam('DB名', 'db_name', MTEXT_LEN, '', array('EXIST_CHECK', 'MAX_LENGTH_CHECK'), $db_name);
     $objDBParam->addParam('DBユーザ', 'db_user', MTEXT_LEN, '', array('EXIST_CHECK', 'MAX_LENGTH_CHECK'), $db_user);
-    $objDBParam->addParam('DBパスワード', 'db_password', MTEXT_LEN, '', array('EXIST_CHECK', 'MAX_LENGTH_CHECK'));
+    $objDBParam->addParam('DBパスワード', 'db_password', MTEXT_LEN, '', array('EXIST_CHECK', 'MAX_LENGTH_CHECK'), $db_pass);
 
     return $objDBParam;
 }
