@@ -11,6 +11,11 @@
 <tr><td rowspan="1" colspan="3">お問い合わせ(非ログイン)</td></tr>
 </thead><tbody>
 <tr>
+	<td>open</td>
+    <td>/</td>
+	<td></td>
+</tr>
+<tr>
 	<td>clickAndWait</td>
 	<td>link=お問い合わせ</td>
 	<td></td>

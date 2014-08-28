@@ -6,11 +6,11 @@ require_once($HOME . "/html/require.php");
 
 class SeleneseTests extends PHPUnit_Extensions_SeleniumTestCase
 {
-    public static $seleneseDirectory = './selenium/';
+    public static $seleneseDirectory = './selenium/front/';
 
     protected function setUp() {
-        //$this->setHost("localhost");
-        //$this->setPort(4444);
+        $this->setHost("127.0.0.1");
+        $this->setPort(4444);
         $this->setBrowser("*firefox");
         $this->setBrowserUrl(HTTP_URL);
         $this->setTimeout(60000);
