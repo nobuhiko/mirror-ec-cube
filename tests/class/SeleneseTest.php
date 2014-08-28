@@ -6,7 +6,7 @@ require_once($HOME . "/html/require.php");
 
 class SeleneseTests extends PHPUnit_Extensions_SeleniumTestCase
 {
-    public static $seleneseDirectory = './';
+    public static $seleneseDirectory = './selenium/';
 
     protected function setUp() {
         //$this->setHost("localhost");
