@@ -29,7 +29,7 @@ script:
   - phpunit -c phpunit.xml.dist
   - grunt
   - cd tests
-  - phpunit SeleneseTests.php
+  - phpunit Selenese.php
 
 after_script:
   - php vendor/bin/coveralls -v
