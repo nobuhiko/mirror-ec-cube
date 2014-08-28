@@ -1827,21 +1827,16 @@ class SC_Utils
      * 引数のパスが絶対パスの場合は true を返す.
      * この関数は, パスの存在チェックを行なわないため注意すること.
      *
-     * use File_Util::isAbsolute
-     * http://pear.php.net/package/File_Util/
-     *
      * @param string $path チェック対象のパス
      * @return boolean 絶対パスの場合 true
      */
-    public static function isAbsoluteRealPath($path)
+    public static function isAbsoluteRealPath($realpath)
     {
-        if (preg_match('/(?:\/|\\\)\.\.(?=\/|$)/', $path)) {
-            return false;
+        if (strpos(PHP_OS, 'WIN') === false) {
+            return substr($realpath, 0, 1) == '/';
+        } else {
+            return preg_match('/^[a-zA-Z]:(\\\|\/)/', $realpath) ? true : false;
         }
-        if (!strncasecmp(PHP_OS, 'win', 3)) {
-            return (($path{0} == '/') ||  preg_match('/^[a-zA-Z]:(\\\|\/)/', $path));
-        }
-        return ($path{0} == '/') || ($path{0} == '~');
     }
 
     /**

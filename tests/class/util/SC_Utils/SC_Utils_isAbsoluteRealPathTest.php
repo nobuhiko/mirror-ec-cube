@@ -35,45 +35,57 @@ class SC_Utils_Test extends Common_TestCase
 {
 
 
-  protected function setUp()
-  {
-    // parent::setUp();
-  }
-
-  protected function tearDown()
-  {
-    // parent::tearDown();
-  }
-
-  /////////////////////////////////////////
-  public function testIsAbsoluteRealPath_絶対パスの場合_trueが返る()
-  {
-
-    if (strpos(PHP_OS, 'WIN')) {
-      $input = 'C:/Program Files/username/hoge/hoge.txt';
-    } else {
-      $input = '/etc/php.ini';
+    protected function setUp()
+    {
+        // parent::setUp();
     }
-    $this->expected = true;
-    $this->actual = SC_Utils::isAbsoluteRealPath($input);
 
-    $this->verify();
-  }
-
-  public function testIsAbsoluteRealPath_相対パスの場合_trueが返る()
-  {
-
-    if (strpos(PHP_OS, 'WIN')) {
-      $input = './system32/hoge/hoge.txt';
-    } else {
-      $input = '../etc/php.ini';
+    protected function tearDown()
+    {
+        // parent::tearDown();
     }
-    $this->expected = false;
-    $this->actual = SC_Utils::isAbsoluteRealPath($input);
 
-    $this->verify();
-  }
+    /////////////////////////////////////////
+    public function testIsAbsoluteRealPath_絶対パスの場合_trueが返る()
+    {
 
-  //////////////////////////////////////////
+        if (strpos(PHP_OS, 'WIN')) {
+            $input = 'C:/Program Files/username/hoge/hoge.txt';
+        } else {
+            $input = '/etc/php.ini';
+        }
+        $this->expected = true;
+        $this->actual = SC_Utils::isAbsoluteRealPath($input);
+
+        $this->verify();
+    }
+
+    public function testIsAbsoluteRealPath_相対パスの場合_trueが返る()
+    {
+
+        if (strpos(PHP_OS, 'WIN')) {
+            $input = './system32/hoge/hoge.txt';
+        } else {
+            $input = '../etc/php.ini';
+        }
+        $this->expected = false;
+        $this->actual = SC_Utils::isAbsoluteRealPath($input);
+
+        $this->verify();
+    }
+
+    public function testIsAbsoluteRealPath_絶対パスと相対パスが混じる場合_trueが返る()
+    {
+        if (strpos(PHP_OS, 'WIN')) {
+            $input = 'C:/path/to/eccube/html/../data/Smarty/default/frontparts/cart.tpl';
+        } else {
+            $input = '/path/to/eccube/html/../data/Smarty/default/frontparts/cart.tpl';
+        }
+        $this->expected = true;
+        $this->actual = SC_Utils::isAbsoluteRealPath($input);
+
+        $this->verify();
+    }
+    //////////////////////////////////////////
 }
 
