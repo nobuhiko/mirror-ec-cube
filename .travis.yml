@@ -3,6 +3,7 @@
 language: php
 
 php:
+  - 5.6
   - 5.5
   - 5.4
   - 5.3
@@ -20,6 +21,8 @@ before_script:
   - cat ./data/config/config.php
   - npm install -g grunt-cli 
   - npm install 
+  - "wget http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar"
+  - "java -jar selenium-server-standalone-2.39.0.jar > /tmp/selenium.log 2> /tmp/selenium.error &"
 
 script:
   - mkdir -p reports/coverage
