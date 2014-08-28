@@ -1,5 +1,5 @@
 <?php
-require_once 'PHPUnit/Extensions/SeleniumTestCase.php';
+//require_once 'PHPUnit/Extensions/SeleniumTestCase.php';
 
 $HOME = realpath(dirname(__FILE__)) . "/../..";
 require_once($HOME . "/html/require.php");
